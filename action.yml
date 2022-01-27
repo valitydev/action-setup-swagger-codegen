@@ -17,6 +17,10 @@ runs:
       shell: bash
       run: java --version
 
+    - name: Create directories
+      shell: bash
+      run: mkdir -p /usr/local/lib/swagger-codegen
+
     - name: Download swagger-codegen
       shell: bash
       run: |
@@ -37,5 +41,5 @@ runs:
     - name: Test codegen
       shell: bash
       run: |
-        /usr/local/bin/swagger-codegen version
-        /usr/local/bin/swagger-codegen langs
+        swagger-codegen version
+        swagger-codegen langs
