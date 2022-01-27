@@ -4,11 +4,9 @@ inputs:
   codegen-version:
     description: 'Codegen (swagger-api/swagger-codegen) version to use.'
     required: true
-    type: string
   generator-version:
     description: 'Erlang generator (valitydev/swagger-generator-erlang) version to use.'
     required: true
-    type: string
 
 runs:
   using: "composite"
@@ -28,16 +26,16 @@ runs:
       run: |
         wget https://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/${{ inputs.codegen-version }}/swagger-codegen-cli-${{ inputs.codegen-version }}.jar -O /usr/local/lib/swagger-codegen/swagger-codegen-cli.jar
 
-    # - name: Download swagger-generator-erlang
-    #   shell: bash
-    #   run: |
-    #     wget https://github.com/valitydev/swagger-generator-erlang/releases/download/${{ inputs.generator-version }}/vality-erlang-codegen-swagger-codegen-1.0.0.jar" -O /usr/local/lib/swagger-codegen/swagger-generator-erlang.jar
+    - name: Download swagger-generator-erlang
+      shell: bash
+      run: |
+        wget https://github.com/valitydev/swagger-generator-erlang/releases/download/v${{ inputs.generator-version }}/swagger-generator-erlang-v${{ inputs.generator-version }}.jar -O /usr/local/lib/swagger-codegen/swagger-generator-erlang.jar
 
     - name: Make swagger-codegen shortcut
       shell: bash
       run: |
         echo "#!/bin/sh" > /usr/local/bin/swagger-codegen
-        echo "java -cp /usr/local/lib/swagger-codegen/swagger-codegen-cli.jar io.swagger.codegen.SwaggerCodegen \$*" >> /usr/local/bin/swagger-codegen
+        echo "java -cp /usr/local/lib/swagger-codegen/swagger-generator-erlang.jar:/usr/local/lib/swagger-codegen/swagger-codegen-cli.jar io.swagger.codegen.SwaggerCodegen \$*" >> /usr/local/bin/swagger-codegen
         chmod +x /usr/local/bin/swagger-codegen
 
     - name: Test codegen
