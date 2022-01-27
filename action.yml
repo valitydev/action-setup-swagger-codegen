@@ -19,7 +19,9 @@ runs:
 
     - name: Create directories
       shell: bash
-      run: mkdir -p /usr/local/lib/swagger-codegen
+      run: |
+        sudo mkdir -p /usr/local/lib/swagger-codegen
+        sudo chown $(whoami) /usr/local/lib/swagger-codegen
 
     - name: Download swagger-codegen
       shell: bash
