@@ -24,12 +24,12 @@ runs:
     - name: Download swagger-codegen
       shell: bash
       run: |
-        wget https://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/${{ inputs.codegen-version }}/swagger-codegen-cli-${{ inputs.codegen-version }}.jar -O /usr/local/lib/swagger-codegen/swagger-codegen-cli.jar
+        wget --no-verbose https://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/${{ inputs.codegen-version }}/swagger-codegen-cli-${{ inputs.codegen-version }}.jar -O /usr/local/lib/swagger-codegen/swagger-codegen-cli.jar
 
     - name: Download swagger-generator-erlang
       shell: bash
       run: |
-        wget https://github.com/valitydev/swagger-generator-erlang/releases/download/v${{ inputs.generator-version }}/swagger-generator-erlang-v${{ inputs.generator-version }}.jar -O /usr/local/lib/swagger-codegen/swagger-generator-erlang.jar
+        wget --no-verbose https://github.com/valitydev/swagger-generator-erlang/releases/download/v${{ inputs.generator-version }}/swagger-generator-erlang-v${{ inputs.generator-version }}.jar -O /usr/local/lib/swagger-codegen/swagger-generator-erlang.jar
 
     - name: Make swagger-codegen shortcut
       shell: bash
