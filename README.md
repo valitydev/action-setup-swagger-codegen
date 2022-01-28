@@ -19,6 +19,9 @@ on: [ master ]
 jobs:
   deploy:
     runs-on: ubuntu-latest
-      steps:
-        uses: valitydev/action-setup-swagger-codegen@v1.0.0
+    steps:
+    - uses: valitydev/action-setup-swagger-codegen@v1.0.0
+      with:
+        codegen-version: "2.4.25"
+        generator-version: "1.0.1"
 ```
